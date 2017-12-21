@@ -34,11 +34,11 @@
   </div>
 
   <div class="row">
-    <json-view class="col-md-12" [hidden]="!views.json" [(data)]="data"></json-view>
-    <log-view class="col-md-12" [hidden]="!views.log" [(data)]="data"></log-view>
+    <app-json-view class="col-md-12" [hidden]="!views.json" [(data)]="data"></app-json-view>
+    <app-log-view class="col-md-12" [hidden]="!views.log" [(data)]="data"></app-log-view>
 
-    <item-view class="col-md-4" [data]="data" [selectedItem]="selectedItem"></item-view>
-    <json-table class="col-md-8" [data]="data" [(selectedItem)]="selectedItem"></json-table>
+    <app-item-view class="col-md-4" [data]="data" [selectedItem]="selectedItem"></app-item-view>
+    <app-json-table class="col-md-8" [data]="data" [(selectedItem)]="selectedItem"></app-json-table>
   </div>
 
 </div>

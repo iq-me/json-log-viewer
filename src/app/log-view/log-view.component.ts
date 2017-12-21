@@ -1,48 +1,28 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
-import { LOG } from './../logs';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'log-view',
+  selector: 'app-log-view',
   templateUrl: './log-view.component.html',
   styleUrls: ['./log-view.component.scss']
 })
-export class LogViewComponent implements OnInit {
+export class LogViewComponent {
   @Input('data') data: any;
   @Output() dataChange: EventEmitter<any> = new EventEmitter();
 
-  public input: string = '';
-  public regexp: string = '';
-  public keys: string = '';
+  public input = '';
+  public regexp = '';
+  public keys = '';
   public matches: any = [];
   public preview: any = {};
 
   constructor() { }
 
-  ngOnInit() {
-    // remove after dev
-    setTimeout(() => {
-      this.regexp = '^(.{23}) ([A-Z]*)  \\[.*\\] ([0-9]*)';
-      this.keys = '{ "time": "$1", "level": "$2", "id": $3 }'
-      this.input = LOG.log;
-      // console.log(LOG.log);
-      this.onchange();
-    }, 100);
-  }
-
   parse() {
-    let output = [];
-    let regexp = new RegExp(this.regexp + '(?:.*)');
+    const output = [];
+    const regexp = new RegExp(this.regexp + '(?:.*)');
 
     this.input.split('\n').forEach((line, i) => {
       this.matches = regexp.exec(line);
-      // let match = regexp.exec(d);
-      // let item = {};
-      // this.keys.split(';').forEach((key, i) => {
-      //   if (key) {
-      //     item[key] = match[i];
-      //   }
-      // });
       line = line.replace(regexp, this.keys);
       output.push(JSON.parse(line));
     });

@@ -12,9 +12,9 @@ export class AppComponent {
   selectedItem = 0;
   views = {
     json: false,
-    log: true
-  }
-  url = 'http://localhost:3300/?f=test.log';
+    log: false
+  };
+  url = '';
   nestedUrlProperty = '';
 
   constructor(
@@ -23,7 +23,7 @@ export class AppComponent {
   }
 
   toggle(view) {
-    let value = !this.views[view];
+    const value = !this.views[view];
     Object.keys(this.views).forEach((key) => {
       this.views[key] = false;
     });
@@ -34,15 +34,15 @@ export class AppComponent {
     this.http.get(this.url)
       .subscribe((res: any[]) => {
         this.data = this.nestedUrlProperty ? this.getByString(res, this.nestedUrlProperty) : res;
-      })
+      });
   }
 
   getByString = (o, s) => {
     s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
     s = s.replace(/^\./, '');           // strip a leading dot
-    let a = s.split('.');
-    for (var i = 0, n = a.length; i < n; ++i) {
-      var k = a[i];
+    const a = s.split('.');
+    for (let i = 0, n = a.length; i < n; ++i) {
+      const k = a[i];
       if (k in o) {
         o = o[k];
       } else {

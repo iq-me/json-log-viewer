@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { filter, orderBy } from 'lodash';
 
 @Component({
-  selector: 'json-table',
+  selector: 'app-json-table',
   templateUrl: './json-table.component.html',
   styleUrls: ['./json-table.component.scss']
 })
-export class JsonTableComponent implements OnInit {
+export class JsonTableComponent implements OnInit, OnChanges {
   @Input('data') data: any[];
   @Input('selectedItem') selectedItem: number;
   @Output() selectedItemChange: EventEmitter<number> = new EventEmitter();
@@ -14,8 +14,8 @@ export class JsonTableComponent implements OnInit {
   order: any;
   columns = [];
 
-  col: string = '';
-  search: string = '';
+  col = '';
+  search = '';
 
   items: any[] = [];
 
@@ -49,21 +49,21 @@ export class JsonTableComponent implements OnInit {
       try {
         _filter = JSON.parse(this.search);
       } catch (e) {
-        let regexp = new RegExp(this.search);
+        const regexp = new RegExp(this.search);
         _filter = obj => regexp.test(JSON.stringify(obj));
       }
     }
 
-    let keys = [];
-    let order = [];
+    const keys = [];
+    const order = [];
     Object.keys(this.order).forEach((key) => {
       keys.push(key);
       order.push(this.order[key]);
     });
 
-    let data = orderBy(filter(this.data, _filter), keys, order);
+    const data = orderBy(filter(this.data, _filter), keys, order);
     this.items = data.map((val, i) => {
-      return { i, value: val }
+      return { i, value: val };
     });
   }
 
@@ -87,9 +87,9 @@ export class JsonTableComponent implements OnInit {
   getByString = (o, s) => {
     s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
     s = s.replace(/^\./, '');           // strip a leading dot
-    let a = s.split('.');
-    for (var i = 0, n = a.length; i < n; ++i) {
-      var k = a[i];
+    const a = s.split('.');
+    for (let i = 0, n = a.length; i < n; ++i) {
+      const k = a[i];
       if (k in o) {
         o = o[k];
       } else {
