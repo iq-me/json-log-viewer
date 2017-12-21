@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "postversion": "git push",
+    "postversion": "git push && ./publish_dist.sh",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
