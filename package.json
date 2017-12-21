@@ -1,6 +1,6 @@
 {
   "name": "json",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "scripts": {
     "postversion": "git push && ./publish_dist.sh",
