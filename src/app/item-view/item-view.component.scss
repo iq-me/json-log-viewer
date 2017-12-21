@@ -1,0 +1,17 @@
+:host {
+  pre {
+    height: calc(100vh - 54px);
+    overflow: scroll;
+    margin: 0;
+  }
+
+  #item-count {
+    position: absolute;
+    right: 16px;
+    top: 1px;
+    font-size: smaller;
+    background: white;
+    padding: 2px;
+    border-top-right-radius: 4px;
+  }
+}

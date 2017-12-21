@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-6">
+    <input class="form-control" [(ngModel)]="search" (keyup.enter)="init()" placeholder="search by regexp">
+  </div>
+
+  <div class="col-md-6">
+    <input class="form-control" [(ngModel)]="col" (keyup.enter)="addCol()" placeholder="add column">
+  </div>
+</div>
+
+<div class="row">
+  <table class="col-md-12 table table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th *ngFor="let column of columns" (click)="sort(column)">
+          {{column}}
+          <span class="pull-right glyphicon glyphicon-remove" (click)="remove($event, column)"></span>
+          <span *ngIf="order[column] === 'asc'" class="pull-right glyphicon glyphicon-triangle-bottom"></span>
+          <span *ngIf="order[column] === 'desc'" class="pull-right glyphicon glyphicon-triangle-top"></span>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let item of items" (click)="selectItem(item.i)">
+        <td>{{ item.i + 1 }}</td>
+        <td *ngFor="let column of columns">{{getByString(item.value, column)}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

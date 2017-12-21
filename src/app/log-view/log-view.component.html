@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-6">
+    <input class="form-control" [(ngModel)]="regexp" (keyup.enter)="onchange()" placeholder="regexp">
+  </div>
+  <div class="col-md-6">
+    <input class="form-control" [(ngModel)]="keys" (keyup.enter)="onchange()" placeholder="key1;key2;key3">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <textarea class="form-control" [(ngModel)]="input" (change)="onchange()" placeholder="paste source json array"></textarea>
+  </div>
+
+  <div class="col-md-6">
+    <pre>{{ matches | json }}</pre>
+    <pre>{{ preview | json }}</pre>
+  </div>
+</div>

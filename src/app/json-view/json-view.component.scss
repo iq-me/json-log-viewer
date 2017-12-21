@@ -1,0 +1,11 @@
+:host {
+  position: absolute;
+  background: white;
+  z-index: 1;
+  height: calc(100vh - 44px);
+  padding: 10px;
+ 
+  textarea {
+    height: 100%;
+  }
+}

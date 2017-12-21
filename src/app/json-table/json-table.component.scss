@@ -1,0 +1,14 @@
+:host {
+  th {
+    cursor: pointer;
+
+    .glyphicon {
+      padding: 2px;
+    }
+  }
+
+  > div:last-child {
+    height: calc(100vh - 78px);
+    overflow: scroll;
+  }
+}

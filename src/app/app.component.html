@@ -1,0 +1,44 @@
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-3 buttons">
+      <button class="btn btn-primary" [class.active]="views.json" (click)="toggle('json')">Edit raw JSON</button>
+      <button class="btn btn-primary" [class.active]="views.log" (click)="toggle('log')">Edit raw log</button>
+    </div>
+
+    <div class="col-md-5">
+      <input class="form-control" [(ngModel)]="url" (keyup.enter)="getData()" placeholder="Paste url">
+    </div>
+    <div class="col-md-1">
+      <input class="form-control" [(ngModel)]="nestedUrlProperty" (keyup.enter)="getData()" placeholder="Nested array">
+    </div>
+
+    <div class="col-md-3 form-inline text-right">
+      <div class="form-group">
+        <ng-selectize [config]="{
+          create: true,
+          labelField: 'label',
+          valueField: 'value',
+          maxItems: 10
+        }"></ng-selectize>
+
+        <!-- <button class="btn btn-default">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button> -->
+      </div>
+
+      <button class="btn btn-default">
+        <span class="glyphicon glyphicon-floppy-disk"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <json-view class="col-md-12" [hidden]="!views.json" [(data)]="data"></json-view>
+    <log-view class="col-md-12" [hidden]="!views.log" [(data)]="data"></log-view>
+
+    <item-view class="col-md-4" [data]="data" [selectedItem]="selectedItem"></item-view>
+    <json-table class="col-md-8" [data]="data" [(selectedItem)]="selectedItem"></json-table>
+  </div>
+
+</div>
